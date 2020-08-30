@@ -80,6 +80,7 @@ class Ui_MainWindow(object):
         self.buttonGenerate.setFont(font)
         self.buttonGenerate.setObjectName("buttonGenerate")
 
+
         #Generated password
         self.linePassword = QtWidgets.QLineEdit(self.centralwidget)
         self.linePassword.setGeometry(QtCore.QRect(70, 440, 550, 25))
@@ -142,6 +143,8 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
+    QtGui.QFontDatabase.addApplicationFont("fonts/Roboto-Regular.ttf")
+    QtGui.QFontDatabase.addApplicationFont("fonts/Lato-Regular.ttf")
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
