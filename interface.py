@@ -6,7 +6,9 @@ class Ui_MainWindow(object):
         #Main window
         MainWindow.setObjectName("MainWindow")
         MainWindow.setGeometry(200, 200, 800, 600)
+        MainWindow.setWindowTitle("PassGen")
         font = QtGui.QFont()
+        icon = QtGui.QIcon()
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
@@ -31,7 +33,7 @@ class Ui_MainWindow(object):
 
         #Lenght widgets
         self.text2 = QtWidgets.QLabel(self.centralwidget)
-        self.text2.setGeometry(QtCore.QRect(70, 165, 281, 20))
+        self.text2.setGeometry(QtCore.QRect(70, 165, 290, 20))
         font.setFamily("Roboto")
         font.setPointSize(12)
         self.text2.setFont(font)
@@ -95,16 +97,36 @@ class Ui_MainWindow(object):
         self.buttonCopy.setObjectName("buttonCopy")
 
 
+        #Language change
+        self.english = QtWidgets.QPushButton(self.centralwidget)
+        self.english.setGeometry(QtCore.QRect(590, 525, 80, 40))
+        self.english.setText("")
+        icon.addPixmap(QtGui.QPixmap("img/english.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.english.setIcon(icon)
+        self.english.setIconSize(QtCore.QSize(80, 40))
+        self.english.setObjectName("english")
+
+        self.polish = QtWidgets.QPushButton(self.centralwidget)
+        self.polish.setGeometry(QtCore.QRect(690, 525, 80, 40))
+        self.polish.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("img/polish.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.polish.setIcon(icon1)
+        self.polish.setIconSize(QtCore.QSize(80, 40))
+        self.polish.setObjectName("polish")
+
+
         MainWindow.setCentralWidget(self.centralwidget)
-        self.retranslateUi(MainWindow)
+        self.retranslateUi_en(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.buttonGenerate.clicked.connect(self.generating)
         self.buttonCopy.clicked.connect(self.copying)
+        self.english.clicked.connect(self.retranslateUi_en)
+        self.polish.clicked.connect(self.retranslateUi_pl)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi_en(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "PassGen"))
         self.title.setText(_translate("MainWindow", "PassGen"))
         self.text1.setText(_translate("MainWindow", "Let\'s create your password!"))
         self.text2.setText(_translate("MainWindow", "Enter your password lenght (max 256):"))
@@ -115,6 +137,23 @@ class Ui_MainWindow(object):
         self.checkboxSymbol.setText(_translate("MainWindow", "Symbols"))
         self.buttonGenerate.setText(_translate("MainWindow", "Generate!"))
         self.buttonCopy.setText(_translate("MainWindow", "Copy"))
+
+        self.inputLenght.setGeometry(QtCore.QRect(360, 160, 60, 30))
+
+    def retranslateUi_pl(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        self.title.setText(_translate("MainWindow", "PassGen"))
+        self.text1.setText(_translate("MainWindow", "Stwórz swoje hasło!"))
+        self.text2.setText(_translate("MainWindow", "Wpisz długość swojego hasła (max 256):"))
+        self.text3.setText(_translate("MainWindow", "Co ma w nim być?"))
+        self.checkboxLower.setText(_translate("MainWindow", "Małe litery"))
+        self.checkboxUpper.setText(_translate("MainWindow", "Duże litery"))
+        self.checkboxNumber.setText(_translate("MainWindow", "Liczby"))
+        self.checkboxSymbol.setText(_translate("MainWindow", "Symbole"))
+        self.buttonGenerate.setText(_translate("MainWindow", "Wygeneruj!"))
+        self.buttonCopy.setText(_translate("MainWindow", "Skopiuj"))
+
+        self.inputLenght.setGeometry(QtCore.QRect(370, 160, 60, 30))
 
     def generating(self):
         details = []
