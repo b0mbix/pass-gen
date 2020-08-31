@@ -10,8 +10,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle("PassGen")
         MainWindow.setWindowIcon(QtGui.QIcon('img/logo.png'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-
 
         #Title and welcome
         self.title = QtWidgets.QLabel(self.centralwidget)
@@ -22,13 +20,11 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.title.setFont(font)
-        self.title.setObjectName("title")
 
         self.text1 = QtWidgets.QLabel(self.centralwidget)
         self.text1.setGeometry(QtCore.QRect(70, 110, 270, 30))
         font.setPointSize(16)
         self.text1.setFont(font)
-        self.text1.setObjectName("text1")
 
 
         #Lenght widgets
@@ -37,7 +33,6 @@ class Ui_MainWindow(object):
         font.setFamily("Roboto")
         font.setPointSize(12)
         self.text2.setFont(font)
-        self.text2.setObjectName("text2")
 
         self.inputLenght = QtWidgets.QSpinBox(self.centralwidget)
         self.inputLenght.setGeometry(QtCore.QRect(360, 160, 60, 30))
@@ -45,34 +40,28 @@ class Ui_MainWindow(object):
         self.inputLenght.setMinimum(1)
         self.inputLenght.setMaximum(256)
         self.inputLenght.setProperty("value", 16)
-        self.inputLenght.setObjectName("inputLenght")
 
 
         #Checkbox widgets
         self.text3 = QtWidgets.QLabel(self.centralwidget)
         self.text3.setGeometry(QtCore.QRect(70, 200, 200, 25))
         self.text3.setFont(font)
-        self.text3.setObjectName("text3")
 
         self.checkboxLower = QtWidgets.QCheckBox(self.centralwidget)
         self.checkboxLower.setGeometry(QtCore.QRect(100, 235, 200, 25))
         self.checkboxLower.setFont(font)
-        self.checkboxLower.setObjectName("checkboxLower")
 
         self.checkboxUpper = QtWidgets.QCheckBox(self.centralwidget)
         self.checkboxUpper.setGeometry(QtCore.QRect(100, 270, 200, 25))
         self.checkboxUpper.setFont(font)
-        self.checkboxUpper.setObjectName("checkboxUpper")
 
         self.checkboxNumber = QtWidgets.QCheckBox(self.centralwidget)
         self.checkboxNumber.setGeometry(QtCore.QRect(100, 305, 200, 25))
         self.checkboxNumber.setFont(font)
-        self.checkboxNumber.setObjectName("checkboxNumber")
 
         self.checkboxSymbol = QtWidgets.QCheckBox(self.centralwidget)
         self.checkboxSymbol.setGeometry(QtCore.QRect(100, 340, 200, 25))
         self.checkboxSymbol.setFont(font)
-        self.checkboxSymbol.setObjectName("checkboxSymbol")
 
 
         #Generate button
@@ -80,7 +69,6 @@ class Ui_MainWindow(object):
         self.buttonGenerate.setGeometry(QtCore.QRect(110, 380, 90, 25))
         font.setPointSize(11)
         self.buttonGenerate.setFont(font)
-        self.buttonGenerate.setObjectName("buttonGenerate")
 
 
         #Generated password
@@ -89,12 +77,10 @@ class Ui_MainWindow(object):
         self.linePassword.setFont(font)
         self.linePassword.setFrame(True)
         self.linePassword.setReadOnly(False)
-        self.linePassword.setObjectName("linePassword")
 
         self.buttonCopy = QtWidgets.QPushButton(self.centralwidget)
         self.buttonCopy.setGeometry(QtCore.QRect(640, 440, 75, 25))
         self.buttonCopy.setFont(font)
-        self.buttonCopy.setObjectName("buttonCopy")
 
 
         #Language change
@@ -103,14 +89,12 @@ class Ui_MainWindow(object):
         icon.addPixmap(QtGui.QPixmap("img/english.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.english.setIcon(icon)
         self.english.setIconSize(QtCore.QSize(80, 40))
-        self.english.setObjectName("english")
 
         self.polish = QtWidgets.QPushButton(self.centralwidget)
         self.polish.setGeometry(QtCore.QRect(690, 525, 80, 40))
         icon.addPixmap(QtGui.QPixmap("img/polish.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.polish.setIcon(icon)
         self.polish.setIconSize(QtCore.QSize(80, 40))
-        self.polish.setObjectName("polish")
 
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -121,7 +105,7 @@ class Ui_MainWindow(object):
         self.buttonCopy.clicked.connect(self.copying)
         self.english.clicked.connect(lambda: self.retranslateUi(MainWindow, "en"))
         self.polish.clicked.connect(lambda: self.retranslateUi(MainWindow, "pl"))
-        
+
     def retranslateUi(self, MainWindow, lang):
         _translate = QtCore.QCoreApplication.translate
         self.title.setText(_translate("MainWindow", "PassGen"))
