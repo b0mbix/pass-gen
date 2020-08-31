@@ -100,7 +100,6 @@ class Ui_MainWindow(object):
         #Language change
         self.english = QtWidgets.QPushButton(self.centralwidget)
         self.english.setGeometry(QtCore.QRect(590, 525, 80, 40))
-        self.english.setText("")
         icon.addPixmap(QtGui.QPixmap("img/english.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.english.setIcon(icon)
         self.english.setIconSize(QtCore.QSize(80, 40))
@@ -108,52 +107,39 @@ class Ui_MainWindow(object):
 
         self.polish = QtWidgets.QPushButton(self.centralwidget)
         self.polish.setGeometry(QtCore.QRect(690, 525, 80, 40))
-        self.polish.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("img/polish.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.polish.setIcon(icon1)
+        icon.addPixmap(QtGui.QPixmap("img/polish.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.polish.setIcon(icon)
         self.polish.setIconSize(QtCore.QSize(80, 40))
         self.polish.setObjectName("polish")
 
 
         MainWindow.setCentralWidget(self.centralwidget)
-        self.retranslateUi_en(MainWindow)
+        self.retranslateUi(MainWindow, "en")
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.buttonGenerate.clicked.connect(self.generating)
         self.buttonCopy.clicked.connect(self.copying)
-        self.english.clicked.connect(self.retranslateUi_en)
-        self.polish.clicked.connect(self.retranslateUi_pl)
-
-    def retranslateUi_en(self, MainWindow):
+        self.english.clicked.connect(lambda: self.retranslateUi(MainWindow, "en"))
+        self.polish.clicked.connect(lambda: self.retranslateUi(MainWindow, "pl"))
+        
+    def retranslateUi(self, MainWindow, lang):
         _translate = QtCore.QCoreApplication.translate
         self.title.setText(_translate("MainWindow", "PassGen"))
-        self.text1.setText(_translate("MainWindow", "Let\'s create your password!"))
-        self.text2.setText(_translate("MainWindow", "Enter your password lenght (max 256):"))
-        self.text3.setText(_translate("MainWindow", "What should be in it?"))
-        self.checkboxLower.setText(_translate("MainWindow", "Lowercase characters"))
-        self.checkboxUpper.setText(_translate("MainWindow", "Uppercase characters"))
-        self.checkboxNumber.setText(_translate("MainWindow", "Numbers"))
-        self.checkboxSymbol.setText(_translate("MainWindow", "Symbols"))
-        self.buttonGenerate.setText(_translate("MainWindow", "Generate!"))
-        self.buttonCopy.setText(_translate("MainWindow", "Copy"))
+        self.text1.setText(_translate("MainWindow", "Let\'s create your password!" if lang == "en" else "Stwórz swoje hasło!"))
+        self.text2.setText(_translate("MainWindow", "Enter your password lenght (max 256):" if lang == "en" else "Wpisz długość swojego hasła (max 256):"))
+        self.text3.setText(_translate("MainWindow", "What should be in it?" if lang == "en" else "Co ma w nim być?"))
+        self.checkboxLower.setText(_translate("MainWindow", "Lowercase characters" if lang == "en" else "Małe litery"))
+        self.checkboxUpper.setText(_translate("MainWindow", "Uppercase characters" if lang == "en" else "Duże litery"))
+        self.checkboxNumber.setText(_translate("MainWindow", "Numbers" if lang == "en" else "Liczby"))
+        self.checkboxSymbol.setText(_translate("MainWindow", "Symbols" if lang == "en" else "Symbole"))
+        self.buttonGenerate.setText(_translate("MainWindow", "Generate!" if lang == "en" else "Wygeneruj!"))
+        self.buttonCopy.setText(_translate("MainWindow", "Copy" if lang == "en" else "Skopiuj"))
 
-        self.inputLenght.setGeometry(QtCore.QRect(360, 160, 60, 30))
-
-    def retranslateUi_pl(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        self.title.setText(_translate("MainWindow", "PassGen"))
-        self.text1.setText(_translate("MainWindow", "Stwórz swoje hasło!"))
-        self.text2.setText(_translate("MainWindow", "Wpisz długość swojego hasła (max 256):"))
-        self.text3.setText(_translate("MainWindow", "Co ma w nim być?"))
-        self.checkboxLower.setText(_translate("MainWindow", "Małe litery"))
-        self.checkboxUpper.setText(_translate("MainWindow", "Duże litery"))
-        self.checkboxNumber.setText(_translate("MainWindow", "Liczby"))
-        self.checkboxSymbol.setText(_translate("MainWindow", "Symbole"))
-        self.buttonGenerate.setText(_translate("MainWindow", "Wygeneruj!"))
-        self.buttonCopy.setText(_translate("MainWindow", "Skopiuj"))
-
-        self.inputLenght.setGeometry(QtCore.QRect(370, 160, 60, 30))
+        if lang == "en":
+            self.inputLenght.setGeometry(QtCore.QRect(360, 160, 60, 30))
+        else:
+            self.inputLenght.setGeometry(QtCore.QRect(370, 160, 60, 30))
+        self.lang = lang
 
     def generating(self):
         details = []
@@ -168,8 +154,8 @@ class Ui_MainWindow(object):
         except ValueError:
             #show error pop-up
             msgErr = QtWidgets.QMessageBox()
-            msgErr.setWindowTitle("Invalid data!")
-            msgErr.setText("Please give correct data!")
+            msgErr.setWindowTitle("Invalid data!" if self.lang == "en" else "Nieprawidłowe dane!")
+            msgErr.setText("Please give correct data!" if self.lang == "en" else "Podaj prawidłowe dane!")
             msgErr.setIcon(QtWidgets.QMessageBox.Critical)
             msgErr.exec_()
 
