@@ -4,11 +4,11 @@ from generator import generating_pass
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         #Main window
+        icon = QtGui.QIcon()
         MainWindow.setObjectName("MainWindow")
         MainWindow.setGeometry(200, 200, 800, 600)
         MainWindow.setWindowTitle("PassGen")
-        font = QtGui.QFont()
-        icon = QtGui.QIcon()
+        MainWindow.setWindowIcon(QtGui.QIcon('img/logo.png'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
@@ -182,6 +182,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
+    font = QtGui.QFont()
     QtGui.QFontDatabase.addApplicationFont("fonts/Roboto-Regular.ttf")
     QtGui.QFontDatabase.addApplicationFont("fonts/Lato-Regular.ttf")
     ui = Ui_MainWindow()
